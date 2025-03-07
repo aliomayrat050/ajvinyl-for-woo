@@ -1,0 +1,508 @@
+/* Container für die gesamte Produktseite */
+#ajvinyl-designer-wrapper {
+  display: inline-flex;
+  gap: 150px; /* Vergrößert den Abstand zwischen linkem und rechtem Bereich */
+  padding-top: 35px;
+  justify-content: space-between;
+  margin: 0 auto;
+  flex-wrap: wrap; /* Erlaubt Flexbox, sich auf kleineren Geräten zu stapeln */
+  max-width: 1300px;
+}
+
+/* Linker Bereich (Canvas und Tabelle) */
+#ajpreview-section-and-table {
+  width: 50%;
+  justify-content: center;
+  order: 1;
+}
+
+@media (min-width: 1025px) {
+  #ajpreview-section-and-table {
+    position: -webkit-sticky; /* Für Safari */
+    position: sticky;
+    top: 20px; /* Fixiere es am oberen Rand */
+    z-index: 10; /* Über anderen Inhalten anzeigen */
+    max-height: calc(
+      100vh - 40px
+    ); /* Verhindert, dass der Container größer wird als der Viewport minus top Abstand (20px oben und unten) */
+    overflow-y: auto; /* Ermöglicht Scrollen, wenn der Inhalt den Container übersteigt */
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
+  }
+
+  /* Verhindern, dass der Inhalt horizontal überläuft */
+  #ajpreview-dimensions,
+  .ajpreview-info,
+  #output-table {
+    max-width: 100%; /* Verhindert, dass der Inhalt horizontal herausragt */
+    overflow-x: hidden; /* Verhindert horizontales Überlaufen */
+  }
+}
+
+/* Rechter Bereich (Einstellungen und Warenkorb) */
+#ajsettings-sidebar {
+  position: relative;
+  z-index: 5;
+  width: 35%;
+  order: 2;
+}
+
+/* Vorschau-Bereich */
+#ajpreview-section {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#ajpreview-section {
+  margin: 10px auto;
+  width: 100%;
+  height: auto; /* Beispielhöhe, nach Bedarf anpassen */
+}
+
+#ajpreview-section #ajpreview-dimensions {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.ajpreview-info {
+  font-size: 0.85em;
+  color: #777;
+}
+
+/* Box für Preisberechnung */
+#ajprice-calculation-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  order: 3; /* Preisberechnungstabelle soll unter den Optionen sein */
+}
+
+#ajprice-calculation-box h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+#ajprice-calculation-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#ajprice-calculation-box table td {
+  padding: 5px 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.ajprice {
+  font-weight: bold;
+  color: var(--fs-color-primary);
+  font-size: xx-large;
+}
+
+/* Accordion (Einstellungen auf der rechten Seite) */
+.ajaccordion-item summary {
+  background-color: var(--fs-color-primary);
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ajaccordion-item[open] summary .ajtoggle-icon {
+  transform: rotate(180deg);
+  transition: transform 0.3s;
+}
+
+.ajaccordion-item .ajcontent,
+.ajaccordion-item .ajcontent-beschriftung {
+  padding: 10px;
+  background: #f7f7f7;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+
+#ajvinyl-designer textarea,
+#ajvinyl-designer input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Tabelle für Preisberechnung */
+#ajprice-calculation-box table td:first-child {
+  text-align: left;
+  font-weight: bold;
+}
+
+#ajprice-calculation-box table td:last-child {
+  text-align: right;
+  color: #333;
+}
+
+/* Eingabefelder im rechten Bereich */
+.ajaccordion-item input[type="number"],
+.ajaccordion-item textarea {
+  width: calc(100% - 16px);
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+.ajaccordion-item label {
+  font-size: 0.9em;
+  color: #555;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Stellt sicher, dass alle Bereiche untereinander angezeigt werden */
+  #ajvinyl-designer-wrapper {
+    flex-direction: column;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0px;
+    gap: 10px;
+  }
+
+  /* Linker Bereich (Canvas und Tabelle) */
+  #ajpreview-section-and-table,
+  #ajsettings-sidebar,
+  #ajprice-calculation-box {
+    width: 100%;
+    /* Nutzt die gesamte Breite auf kleinen Bildschirmen */
+  }
+
+  .ajline-settings {
+    width: 100%;
+    display: block;
+    flex-direction: column;
+  }
+
+  #ajpreview-section {
+    width: 100%; /* Kleinere Höhe für kleinere Bildschirme */
+  }
+}
+@media (max-width: 1024px) {
+  /* Stellt sicher, dass alle Bereiche untereinander angezeigt werden */
+  #ajvinyl-designer-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 0px;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  /* Linker Bereich (Canvas und Tabelle) */
+  #ajpreview-section-and-table,
+  #ajsettings-sidebar,
+  #ajprice-calculation-box {
+    width: 100%;
+    /* Nutzt die gesamte Breite auf kleinen Bildschirmen */
+  }
+
+  .ajline-settings {
+    width: 100%;
+    display: block;
+    flex-direction: column;
+  }
+
+  #ajpreview-section {
+    width: 100%; /* Kleinere Höhe für kleinere Bildschirme */
+  }
+}
+
+.ajvinyl-can-work-box {
+  display: none !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Container */
+#ajvinyl-canvas-container {
+  display: inline-flex;
+  flex-wrap: wrap; /* Elemente umbrechen, wenn kein Platz */
+  align-items: flex-start;
+  width: 90%;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+#ajvinyl-canvas {
+  border: 1px solid black;
+  width: 90%;
+}
+
+.ajline-settings {
+  border: 1px solid #bbbbbb;
+  margin-bottom: 10px;
+}
+
+.ajline-number {
+  font-weight: bold;
+  color: #333;
+  padding-right: 8px; /* Abstand nach rechts für bessere Lesbarkeit */
+  white-space: nowrap; /* Verhindert Zeilenumbrüche */
+}
+
+.ajspace-input {
+  display: flex;
+  flex-direction: column; /* Stellt sicher, dass die Labels und Inputs übereinander sind */
+  gap: 10px; /* Abstand zwischen den Zeilen */
+}
+
+.ajspace-input .ajlabel-row {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row; /* Die Labels bleiben in einer Reihe */
+  margin-bottom: -15px;
+}
+
+.ajspace-input .ajinput-row {
+  display: flex;
+  flex-direction: row; /* Die Inputs bleiben in einer Reihe */
+  gap: 10px; /* Abstand zwischen den Inputs */
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+/* Dropdown Styling */
+.ajstyled-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  font-size: 14px;
+  flex-grow: 1;
+  transition: border-color 0.3s ease;
+}
+
+.ajstyled-select:focus {
+  border-color: var(--fs-color-primary);
+  outline: none;
+}
+
+/* Textfeld Styling */
+
+/* Style Buttons für Fett und Kursiv */
+.ajstyle-button {
+  /*width: 35px;
+        height: 35px;*/
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ajstyle-button.active {
+  background-color: var(--fs-color-primary);
+  color: white;
+}
+
+.ajalign-buttons {
+  display: flex;
+  gap: 0px;
+  flex-wrap: wrap;
+}
+
+.ajstyle-buttons {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
+.ajalign-button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #e9ecef;
+  cursor: pointer;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.ajalign-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.ajalign-button.active {
+  background-color: var(--fs-color-primary);
+  border-color: var(--fs-color-primary);
+  color: white;
+}
+
+.ajstyle-button.disabled {
+  background-color: #ddd;
+  color: #666;
+  pointer-events: none; /* verhindert Klicks */
+  cursor: not-allowed; /* zeigt einen "nicht erlaubt"-Cursor */
+}
+
+.ajsize-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ajtoggle-switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+}
+
+.ajtoggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ajslider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 30px;
+}
+
+.ajslider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .ajslider {
+  background-color: var(--fs-color-primary);
+}
+
+input:checked + .ajslider:before {
+  transform: translateX(30px);
+}
+
+/* Ausgrauen des deaktivierten Inputs */
+input[disabled] {
+  background-color: #f0f0f0;
+  color: #a0a0a0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+select:disabled {
+  background-color: #f0f0f0; /* Hellerer Hintergrund */
+  color: #888888; /* Graue Schriftfarbe */
+  cursor: not-allowed; /* Zeigt den "Nicht erlaubt"-Zeiger an */
+}
+
+/* Rabatt-Tabelle Styles */
+.aj-discount-table {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+}
+
+.aj-table-title {
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Zeilen und Zellen Styling */
+.aj-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1px 0;
+  margin: 0;
+}
+
+.aj-cell {
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+  margin: 0;
+}
+
+/* Styling für den hr mit der Klasse aj-separator */
+.aj-separator {
+  margin: 10px 0;
+}
+
+/* Standardmäßig versteckte Zeilen */
+.aj-hidden {
+  display: none;
+}
+
+/* Stile nur für die Tabelle mit der ID #output-table */
+#output-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 50px;
+}
+
+/* Trennlinien nur für die Zeilen innerhalb der Tabelle #output-table */
+#output-table tr:not(:last-child) {
+  border-bottom: 1px solid #ddd; /* Separator zwischen den Zeilen */
+}
+
+/* Zellen-Stil für die Tabelle #output-table ohne globale Wirkung */
+#output-table td {
+  padding: 8px;
+  vertical-align: middle;
+}
+
+/* Optional: Leicht abgesetzte Farbe für die Zeilennummer */
+#output-table td.line-number {
+  color: #555;
+  font-weight: bold;
+  width: 50px;
+}
+
+/* Optional: Zeilenhöhe mit einer helleren Farbe */
+#output-table td.line-height {
+  color: #888;
+  width: 100px;
+}
+
+/* Tabelleninhalt */
+#output-table td:nth-child(3) {
+  color: #333;
+}
